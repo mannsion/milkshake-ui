@@ -30,37 +30,41 @@ function milkshakeSource() {
   return {
     name: 'milkshake-source-win-fix',
 
-    // normalize IDs like /@id/V:/... → /@fs/V:/...
+    // normalize IDs containing /@id/ anywhere, e.g., /@id/V:/... or path/@id/V:/... → /@fs/V:/...
     // this runs early enough to affect VE’s resolve lookups
-    resolveId(id) {
-      if (id.startsWith('/@id/')) {
-        const raw = id.slice('/@id/'.length);
-        return '/@fs/' + posix(raw);
-      }
-      // map any @milkshake-ui/core[/...] to /@fs/<abs>/src[/...]
-      if (CORE_SRC && (id === '@milkshake-ui/core' || id.startsWith('@milkshake-ui/core/'))) {
-        const sub = id === '@milkshake-ui/core' ? '/index.ts' : id.slice('@milkshake-ui/core'.length);
-        // try to resolve common suffixes if it's a folder or extensionless
-        const base = CORE_SRC + sub;
-        const candidates = [
-          base,
-          base + '.ts',
-          base + '.tsx',
-          base + '.css.ts',
-          base + '.css.tsx',
-          base.endsWith('/') ? base + 'index.ts' : base + '/index.ts',
-          base.endsWith('/') ? base + 'index.tsx' : base + '/index.tsx',
-          base.endsWith('/') ? base + 'index.css.ts' : base + '/index.css.ts',
-          base.endsWith('/') ? base + 'index.css.tsx' : base + '/index.css.tsx',
-        ];
-        const hit = candidates.find((f) => {
-          try { return fs.existsSync(f.replace('/@fs/', '')); } catch { return false; }
-        });
-        // if nothing matched, fall back to treating it like a path under src/
-        const target = hit ?? base;
-        return target.startsWith('/@fs/') ? target : '/@fs/' + target;
-      }
-      return null;
+    resolveId: {
+      order: 'pre' as const,
+      handler(source, importer, options) {
+        if (source.includes('/@id/')) {
+          const index = source.indexOf('/@id/');
+          const raw = source.slice(index + '/@id/'.length);
+          return '/@fs/' + posix(raw);
+        }
+        // map any @milkshake-ui/core[/...] to /@fs/<abs>/src[/...]
+        if (CORE_SRC && (source === '@milkshake-ui/core' || source.startsWith('@milkshake-ui/core/'))) {
+          const sub = source === '@milkshake-ui/core' ? '/index.ts' : source.slice('@milkshake-ui/core'.length);
+          // try to resolve common suffixes if it's a folder or extensionless
+          const base = CORE_SRC + sub;
+          const candidates = [
+            base,
+            base + '.ts',
+            base + '.tsx',
+            base + '.css.ts',
+            base + '.css.tsx',
+            base.endsWith('/') ? base + 'index.ts' : base + '/index.ts',
+            base.endsWith('/') ? base + 'index.tsx' : base + '/index.tsx',
+            base.endsWith('/') ? base + 'index.css.ts' : base + '/index.css.ts',
+            base.endsWith('/') ? base + 'index.css.tsx' : base + '/index.css.tsx',
+          ];
+          const hit = candidates.find((f) => {
+            try { return fs.existsSync(f.replace('/@fs/', '')); } catch { return false; }
+          });
+          // if nothing matched, fall back to treating it like a path under src/
+          const target = hit ?? base;
+          return target.startsWith('/@fs/') ? target : '/@fs/' + target;
+        }
+        return null;
+      },
     },
 
     // make sure Vite dev server can read the workspace package dir
