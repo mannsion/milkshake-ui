@@ -82,6 +82,9 @@ out
 .nuxt
 dist
 
+# SvelteKit build output
+/build
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
@@ -97,6 +100,9 @@ dist
 
 # Sveltekit cache directory
 .svelte-kit/
+
+# SvelteKit output
+.output
 
 # vitepress build output
 **/.vitepress/dist
@@ -118,6 +124,9 @@ dist
 
 # Firebase cache directory
 .firebase/
+
+# Wrangler (Cloudflare)
+.wrangler
 
 # TernJS port file
 .tern-port

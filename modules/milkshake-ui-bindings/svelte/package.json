@@ -1,0 +1,18 @@
+{
+  "name": "@milkshake-ui/svelte",
+  "version": "0.0.1",
+  "description": "Svelte bindings for Milkshake UI",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "svelte": "^4.0.0",
+    "@milkshake-ui/core": "file:../../milkshake-ui"
+  },
+  "peerDependencies": {
+    "svelte": "^4.0.0"
+  }
+}

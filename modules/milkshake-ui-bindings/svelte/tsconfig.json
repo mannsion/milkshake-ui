@@ -1,0 +1,10 @@
+﻿{
+  "extends": "../../../configs/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+  },
+  "include": ["**/*.ts", "**/*.svelte"],
+  "references": [
+    { "path": "../../milkshake-ui" }
+  ]
+}
