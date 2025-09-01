@@ -1,0 +1,32 @@
+{
+	"name": "@milkshake-ui/core",
+	"version": "0.0.0-dev.0",
+	"type": "module",
+	"exports": {
+		".": {
+			"source": "./index.ts",
+			"default": "./index.ts",
+			"types": "./index.ts"
+		},
+		"./grid": {
+			"source": "./grid/index.ts",
+			"default": "./grid/index.ts",
+			"types": "./grid/index.ts"
+		}
+	},
+	"files": [
+		"**/*.ts",
+		"*.md"
+	],
+	"sideEffects": [
+		"**/*.css.ts"
+	],
+	"peerDependencies": {
+		"@vanilla-extract/css": "^1.15.5",
+		"@vanilla-extract/sprinkles": "^1.6.5"
+	},
+	"devDependencies": {
+		"@vanilla-extract/css": "^1.15.5",
+		"@vanilla-extract/sprinkles": "^1.6.5"
+	}
+}

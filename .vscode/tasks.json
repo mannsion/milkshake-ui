@@ -1,0 +1,43 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build-core-typography",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"-w",
+				"@milkshake-ui/core",
+				"--silent",
+				"--",
+				"tsc",
+				"-p",
+				"@milkshake-ui/core/tsconfig.json"
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "build-core",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"-w",
+				"@milkshake-ui/core",
+				"--silent",
+				"--",
+				"tsc",
+				"-p",
+				"@milkshake-ui/core/tsconfig.json"
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}

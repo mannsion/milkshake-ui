@@ -1,0 +1,60 @@
+{
+	"name": "milkshake-ui-project",
+	"version": "1.0.0",
+	"description": "",
+	"homepage": "https://github.com/mannsion/milkshake-ui#readme",
+	"bugs": {
+		"url": "https://github.com/mannsion/milkshake-ui/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mannsion/milkshake-ui.git"
+	},
+	"license": "ISC",
+	"author": "mannsion",
+	"type": "module",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"pack:core": "vite-node build_/publish-core.ts pack",
+		"publish:core": "vite-node build_/publish-core.ts publish",
+		"publish:core:dev": "cross-env REGISTRY=https://npm.recktek.com TAG=dev vite-node build_/publish-core.ts publish",
+		"publish:core:dev:force": "cross-env REGISTRY=https://npm.recktek.com TAG=dev FORCE=1 vite-node build_/publish-core.ts publish",
+		"publish:core:dry-run": "cross-env DRY_RUN=1 vite-node build_/publish-core.ts publish",
+		"pack:plugin": "vite-node build_/publish-plugin.ts pack",
+		"publish:plugin": "vite-node build_/publish-plugin.ts publish",
+		"publish:plugin:dev": "cross-env REGISTRY=https://npm.recktek.com TAG=dev vite-node build_/publish-plugin.ts publish",
+		"publish:plugin:dev:force": "cross-env REGISTRY=https://npm.recktek.com TAG=dev FORCE=1 vite-node build_/publish-plugin.ts publish",
+		"publish:plugin:dry-run": "cross-env DRY_RUN=1 vite-node build_/publish-plugin.ts publish",
+		"site:dev": "npm run dev --workspace=@milkshake-ui/site",
+		"site:build": "npm run build --workspace=@milkshake-ui/site",
+		"site:preview": "npm run preview --workspace=@milkshake-ui/site",
+		"dreg:docker:build": "cross-env DOCKER_BUILDKIT=1 REGISTRY=dreg.home.lab:5000 node build_/docker-release.js build",
+		"dreg:docker:push": "cross-env REGISTRY=dreg.home.lab:5000 node build_/docker-release.js push --registry dreg.home.lab:5000",
+		"dreg:docker:redeploy": "cross-env REGISTRY=dreg.home.lab:5000 CONTAINER_NAME=milkshake-ui HOST_PORT=3000 CONTAINER_PORT=3000 RESTART_POLICY=unless-stopped node build_/docker-release.js redeploy --registry dreg.home.lab:5000",
+		"dreg:docker:release": "npm run site:build && npm run dreg:docker:build && npm run dreg:docker:push && npm run dreg:docker:redeploy",
+		"dreg:docker:pull": "cross-env REGISTRY=dreg.home.lab:5000 node build_/docker-release.js pull --registry dreg.home.lab:5000",
+		"site:check": "npm run check --workspace=@milkshake-ui/site",
+		"site:lint": "npm run lint --workspace=@milkshake-ui/site",
+		"core:build": "npm run build --workspace=@milkshake-ui/core",
+		"plugin:build": "npm run build --workspace=@milkshake-ui/vite-plugin"
+	},
+	"devDependencies": {
+		"@types/node": "^24.5.2",
+		"@vanilla-extract/sprinkles": "^1.6.5",
+		"eslint": "^9.34.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.11.0",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.2",
+		"vite": "^7.1.7",
+		"vite-node": "^3.2.4",
+		"vite-plugin-dts": "^4.5.4",
+		"vite-tsconfig-paths": "^5.1.4",
+		"yargs": "^18.0.0"
+	},
+	"dependencies": {
+		"cross-env": "^10.0.0"
+	}
+}

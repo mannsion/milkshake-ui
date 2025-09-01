@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 General conversations"
+    url: "https://github.com/mannsion/milkshake-ui/discussions/categories/general"
+    about: "Swap ideas, align on roadmap direction, or talk strategy in the General discussion channel."
+  - name: "🙋 Help & Q&A"
+    url: "https://github.com/mannsion/milkshake-ui/discussions/categories/help"
+    about: "Need support integrating Milkshake UI? Ask the community in the Help discussion category."
+  - name: "🎉 Showcase your work"
+    url: "https://github.com/mannsion/milkshake-ui/discussions/categories/showcase"
+    about: "Share projects powered by Milkshake UI and see what others are building."

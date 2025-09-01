@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 1600 900" aria-labelledby="title desc" preserveAspectRatio="xMidYMid slice">
+  <title id="title">Milkshake UI Flowing Pour</title>
+  <desc id="desc">
+    Gentle layers of animated milk pour swirling together with seamless ribbons and a soft evening glow, evoking a smooth milkshake cascade.
+  </desc>
+  <defs>
+        <linearGradient id="evening-cream" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B1224" />
+      <stop offset="45%" stop-color="#111428" />
+      <stop offset="100%" stop-color="#050B16" />
+    </linearGradient>
+
+    <linearGradient id="flow-back" x1="0" y1="280" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35" />
+      <stop offset="45%" stop-color="#F8EEE3" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#EED0B4" stop-opacity="0.75" />
+    </linearGradient>
+
+    <linearGradient id="flow-mid" x1="0" y1="420" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.48" />
+      <stop offset="35%" stop-color="#FDF4EA" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#F4D8BA" stop-opacity="0.82" />
+    </linearGradient>
+
+    <linearGradient id="flow-front" x1="0" y1="520" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.78" />
+      <stop offset="50%" stop-color="#FDF6EF" stop-opacity="0.88" />
+      <stop offset="100%" stop-color="#F5DAC1" stop-opacity="0.9" />
+    </linearGradient>
+
+    <filter id="milkGlow" x="-20%" y="-20%" width="140%" height="150%">
+      <feGaussianBlur stdDeviation="24" result="blur" />
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.6 0" />
+      <feBlend in="SourceGraphic" in2="blur" mode="screen" />
+    </filter>
+
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      svg {
+        font-family: "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+        background-color: #050B16;
+      }
+
+      .flow {
+        mix-blend-mode: screen;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      .flow--back {
+        fill: url(#flow-back);
+        opacity: 0.5;
+      }
+
+      .flow--mid {
+        fill: url(#flow-mid);
+        opacity: 0.66;
+      }
+
+      .flow--front {
+        fill: url(#flow-front);
+        opacity: 0.84;
+      }
+
+      .static-fallback {
+        display: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .smil {
+          display: none;
+        }
+
+        .static-fallback {
+          display: block;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="transparent" />
+
+  <g filter="url(#milkGlow)">
+    <g class="flow-layer flow-layer--back">
+      <path class="flow flow--back smil" d="M -220 540 C 80 460 340 340 720 380 C 1080 420 1320 320 1820 500 L 1820 900 L -220 900 Z">
+        <animate attributeName="d" dur="22s" repeatCount="indefinite" values="M -220 540 C 80 460 340 340 720 380 C 1080 420 1320 320 1820 500 L 1820 900 L -220 900 Z;M -240 520 C 40 440 320 360 700 360 C 1060 360 1340 300 1780 480 L 1780 900 L -240 900 Z;M -200 560 C 120 480 360 340 720 400 C 1100 440 1360 340 1840 520 L 1840 900 L -200 900 Z;M -220 540 C 80 460 340 340 720 380 C 1080 420 1320 320 1820 500 L 1820 900 L -220 900 Z" />
+        <animateTransform attributeName="transform" type="translate" dur="26s" repeatCount="indefinite" values="0 0; 18 -10; -16 8; 0 0" />
+      </path>
+      <path class="flow flow--back static-fallback" d="M -220 540 C 80 460 340 340 720 380 C 1080 420 1320 320 1820 500 L 1820 900 L -220 900 Z" />
+    </g>
+
+    <g class="flow-layer flow-layer--mid">
+      <path class="flow flow--mid smil" d="M -260 660 C 40 620 420 520 780 580 C 1160 640 1400 580 1820 700 L 1820 900 L -260 900 Z">
+        <animate attributeName="d" dur="18s" repeatCount="indefinite" values="M -260 660 C 40 620 420 520 780 580 C 1160 640 1400 580 1820 700 L 1820 900 L -260 900 Z;M -240 640 C 80 600 420 500 780 560 C 1140 620 1420 560 1800 680 L 1800 900 L -240 900 Z;M -280 680 C 20 640 420 540 780 600 C 1180 660 1380 600 1840 720 L 1840 900 L -280 900 Z;M -260 660 C 40 620 420 520 780 580 C 1160 640 1400 580 1820 700 L 1820 900 L -260 900 Z" />
+        <animateTransform attributeName="transform" type="translate" dur="20s" repeatCount="indefinite" values="0 0; 14 -6; -12 5; 0 0" />
+      </path>
+      <path class="flow flow--mid static-fallback" d="M -260 660 C 40 620 420 520 780 580 C 1160 640 1400 580 1820 700 L 1820 900 L -260 900 Z" />
+    </g>
+
+    <g class="flow-layer flow-layer--front">
+      <path class="flow flow--front smil" d="M -220 760 C 0 740 360 700 760 740 C 1160 780 1500 760 1860 780 L 1860 900 L -220 900 Z">
+        <animate attributeName="d" dur="16s" repeatCount="indefinite" values="M -220 760 C 0 740 360 700 760 740 C 1160 780 1500 760 1860 780 L 1860 900 L -220 900 Z;M -200 740 C 40 720 360 680 780 720 C 1160 760 1480 740 1820 760 L 1820 900 L -200 900 Z;M -240 780 C -20 760 360 720 760 760 C 1160 800 1520 780 1880 800 L 1880 900 L -240 900 Z;M -220 760 C 0 740 360 700 760 740 C 1160 780 1500 760 1860 780 L 1860 900 L -220 900 Z" />
+        <animateTransform attributeName="transform" type="translate" dur="18s" repeatCount="indefinite" values="0 0; 10 -4; -9 3; 0 0" />
+      </path>
+      <path class="flow flow--front static-fallback" d="M -220 760 C 0 740 360 700 760 740 C 1160 780 1500 760 1860 780 L 1860 900 L -220 900 Z" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,64 @@
+name: "Bug report"
+description: "Something in Milkshake UI isn't working as expected."
+title: "bug: <summary>"
+labels:
+  - type:bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping harden Milkshake UI! Please fill out the details below so we can reproduce the problem fast.
+  - type: input
+    id: area
+    attributes:
+      label: Affected area
+      description: Which package or recipe is impacted? (core tokens, sprinkles, site, plugin, etc.)
+      placeholder: e.g. "@milkshake-ui/core sprinkles" or "site theme switcher"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug and the steps that led to it. Screenshots or GIFs welcome.
+      placeholder: Tell us what went wrong.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide a minimal code sample or repo link, plus any commands to run.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs. actual
+      description: Share what you expected to happen and what actually occurred.
+      placeholder: "Expected X, but saw Y"
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: List the Milkshake UI package versions, framework (React/Svelte/etc.), bundler, and Node version.
+      placeholder: |
+        @milkshake-ui/core 0.0.1, SvelteKit 1.5.0, Vite 4.5.0, Node 18.17.0
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment & browser
+      description: Mention OS, browser, design tool, or other context that could impact reproduction.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Anything else? Related issues, pull requests, or theories are welcome.

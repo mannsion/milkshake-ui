@@ -1,0 +1,43 @@
+name: "Documentation feedback"
+description: "Help us improve guides, examples, and reference docs."
+title: "docs: <summary>"
+labels:
+  - type:docs
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for keeping our docs sharp! Let us know where guidance is unclear, missing, or incorrect.
+  - type: input
+    id: location
+    attributes:
+      label: Page or file
+      description: Point us to the docs page, README section, or source file.
+      placeholder: e.g. "README > Phase roadmap" or "packages/site/src/lib/theme-context.ts"
+    validations:
+      required: true
+  - type: dropdown
+    id: issueType
+    attributes:
+      label: Issue type
+      description: What kind of improvement is needed?
+      options:
+        - Missing content
+        - Incorrect or outdated content
+        - Hard to understand
+        - Typo or formatting issue
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Explain what needs to change and, if possible, propose updated wording or examples.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Share how you ran into the issue (tooling, framework, use case) or provide supporting links.

@@ -1,0 +1,41 @@
+{
+  "name": "@milkshake-ui/vite-plugin",
+  "version": "0.0.0-dev.0",
+  "description": "Vite plugin for Milkshake UI",
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": {
+      "source": "./index.ts",
+      "types": "./index.ts",
+      "import": "./index.ts",
+      "default": "./index.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE*"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+
+  "peerDependencies": {
+    "vite": "^7.0.0"
+  }
+}

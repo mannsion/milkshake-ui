@@ -1,0 +1,28 @@
+{
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/dist": false,
+        "**/build": false,
+        "**/.next": true,
+        "**/.nuxt": true,
+        "**/.output": true,
+        "**/.vercel": true,
+        "**/.netlify": true,
+        "**/coverage": true,
+        "**/.nyc_output": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.js",
+        "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+        "*.jsx": "${capture}.js",
+        "*.tsx": "${capture}.ts",
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, tsconfig.json, tsconfig.*.json, .eslintrc*, eslint.config.*, .prettierrc*, .prettierignore, .eslintignore, vite.config.*, vitest.config.*, svelte.config.*, rollup.config.*, webpack.config.*, babel.config.*, tailwind.config.*, postcss.config.*, .stylelintrc*, .gitignore, .editorconfig, .npmrc, .nvmrc, README.md, LICENSE, CHANGELOG.md, CONTRIBUTING.md",
+        "next.config.js": "next.config.*.js",
+        "nuxt.config.js": "nuxt.config.*.js",
+        ".env": ".env.*",
+        "*.md": "*.mdx"
+    }
+}

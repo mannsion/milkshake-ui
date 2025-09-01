@@ -1,0 +1,49 @@
+name: "Feature request"
+description: "Propose a new capability or enhancement for Milkshake UI."
+title: "feat: <summary>"
+labels:
+  - type:idea
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea that would make Milkshake UI better? Tell us about the problem, the opportunity, and how you see it coming together.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What user need or gap does this idea address?
+      placeholder: Describe the pain or opportunity.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Outline the change. Include token additions, API sketches, component behaviors, or design principles that matter.
+      placeholder: Share the high-level solution, UX flow, or technical approach.
+    validations:
+      required: true
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Impact
+      description: Who would benefit and what does success look like? Mention adoption signals, accessibility wins, or developer experience boosts.
+      placeholder: Explain the value and success metrics.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: List other approaches you explored and why they fall short. "None" is fine if you haven't evaluated others yet.
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks & dependencies
+      description: Call out potential pitfalls, open questions, or prerequisites.
+  - type: textarea
+    id: references
+    attributes:
+      label: References & inspiration
+      description: Drop links to prior art, design inspo, or related issues/discussions.
