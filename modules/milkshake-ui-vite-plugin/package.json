@@ -1,0 +1,28 @@
+{
+  "name": "@milkshake-ui/vite-plugin",
+  "version": "0.0.1",
+  "description": "Vite plugin for Milkshake UI",
+  "main": "index.js",
+  "type": "module",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "vite": "^7.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "vite": "^7.0.0"
+  }
+}
