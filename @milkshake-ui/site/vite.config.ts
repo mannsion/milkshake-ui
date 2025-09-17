@@ -5,8 +5,18 @@ import { milkshakeSourcePlugin } from '@milkshake-ui/vite-plugin';
 
 export default defineConfig({
   plugins: [
-    vanillaExtractPlugin({ identifiers: 'debug' }),
+    vanillaExtractPlugin({
+      identifiers: 'debug'
+    }),
     sveltekit(),
     milkshakeSourcePlugin(),
   ],
+  // Optimize CSS loading
+  css: {
+    devSourcemap: true
+  },
+  // Server-side rendering configuration
+  ssr: {
+    noExternal: ['@vanilla-extract/css']
+  }
 });

@@ -19,6 +19,25 @@
 				"$tsc"
 			],
 			"group": "build"
+		},
+		{
+			"label": "build-core",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"-w",
+				"@milkshake-ui/core",
+				"--silent",
+				"--",
+				"tsc",
+				"-p",
+				"@milkshake-ui/core/tsconfig.json"
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
 		}
 	]
 }
