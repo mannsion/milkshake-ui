@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { themeContract } from './theme-contract.css';
 
 // Component styles using vanilla-extract's style() function
 // These handle complex layouts that would cause union type issues in sprinkles
@@ -113,7 +114,7 @@ export const card = style({
   borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: 'var(--color-neutral-200)',
-  boxShadow: 'var(--shadow-md)',
+  boxShadow: themeContract.shadows.boxShadow.md,
 });
 
 export const cardPadding = style({

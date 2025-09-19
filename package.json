@@ -14,8 +14,26 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
+  "workspaces": [
+    "@milkshake-ui/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run site:dev",
+    "build": "npm run site:build",
+    "preview": "npm run site:preview",
+    "docker:build": "npm run build && docker build -t milkshake-ui-site @milkshake-ui/site",
+    "docker:save": "docker save milkshake-ui-site > milkshake-ui-site.tar",
+    "docker:load": "docker load < milkshake-ui-site.tar",
+    "docker:deploy": "npm run docker:build && npm run docker:save && npm run docker:load && del milkshake-ui-site.tar",
+    "docker:run": "docker run -d -p 3000:3000 --name milkshake-ui-site milkshake-ui-site",
+    "docker:stop": "docker stop milkshake-ui-site && docker rm milkshake-ui-site",
+    "site:dev": "npm run dev --workspace=@milkshake-ui/site",
+    "site:build": "npm run build --workspace=@milkshake-ui/site",
+    "site:preview": "npm run preview --workspace=@milkshake-ui/site",
+    "site:check": "npm run check --workspace=@milkshake-ui/site",
+    "site:lint": "npm run lint --workspace=@milkshake-ui/site",
+    "core:build": "npm run build --workspace=@milkshake-ui/core",
+    "plugin:build": "npm run build --workspace=@milkshake-ui/vite-plugin"
   },
   "devDependencies": {
     "@vanilla-extract/sprinkles": "^1.6.5",

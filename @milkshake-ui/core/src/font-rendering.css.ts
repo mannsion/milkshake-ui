@@ -21,6 +21,14 @@ globalStyle('body', {
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
   textRendering: 'optimizeLegibility',
+  margin: 0,
+  padding: 0,
+});
+
+// Remove default UA margins/padding contributing to gutters
+globalStyle('html, body', {
+  margin: 0,
+  padding: 0,
 });
 
 // Code elements get special treatment

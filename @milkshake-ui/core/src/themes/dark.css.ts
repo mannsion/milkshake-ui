@@ -225,23 +225,24 @@ export const darkTheme = createTheme(themeContract, {
   shadows: {
     boxShadow: {
       none: 'none',
-      xs: '0 1px 2px 0 rgb(0 0 0 / 0.3)',
-      sm: '0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4)',
-      md: '0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4)',
-      lg: '0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4)',
-      xl: '0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4)',
-      '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.5)',
-      inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.3)',
-      outline: '0 0 0 3px rgb(59 130 246 / 0.8)',
+      // Use light (white) shadows with appropriate alphas to read on dark surfaces
+      xs: '0 1px 2px 0 rgb(255 255 255 / 0.08)',
+      sm: '0 1px 3px 0 rgb(255 255 255 / 0.10), 0 1px 2px -1px rgb(255 255 255 / 0.08)',
+      md: '0 4px 6px -1px rgb(255 255 255 / 0.12), 0 2px 4px -2px rgb(255 255 255 / 0.10)',
+      lg: '0 10px 15px -3px rgb(255 255 255 / 0.14), 0 4px 6px -4px rgb(255 255 255 / 0.12)',
+      xl: '0 20px 25px -5px rgb(255 255 255 / 0.16), 0 8px 10px -6px rgb(255 255 255 / 0.14)',
+      '2xl': '0 25px 50px -12px rgb(255 255 255 / 0.20)',
+      inner: 'inset 0 2px 4px 0 rgb(255 255 255 / 0.10)',
+      outline: '0 0 0 3px rgb(96 165 250 / 0.7)',
     },
 
     dropShadow: {
       none: 'none',
-      sm: 'drop-shadow(0 1px 1px rgb(0 0 0 / 0.3))',
-      md: 'drop-shadow(0 4px 3px rgb(0 0 0 / 0.4)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.4))',
-      lg: 'drop-shadow(0 10px 8px rgb(0 0 0 / 0.3)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.4))',
-      xl: 'drop-shadow(0 20px 13px rgb(0 0 0 / 0.2)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.3))',
-      '2xl': 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.4))',
+      sm: 'drop-shadow(0 1px 1px rgb(255 255 255 / 0.10))',
+      md: 'drop-shadow(0 4px 3px rgb(255 255 255 / 0.12)) drop-shadow(0 2px 2px rgb(255 255 255 / 0.10))',
+      lg: 'drop-shadow(0 10px 8px rgb(255 255 255 / 0.14)) drop-shadow(0 4px 3px rgb(255 255 255 / 0.12))',
+      xl: 'drop-shadow(0 20px 13px rgb(255 255 255 / 0.16)) drop-shadow(0 8px 5px rgb(255 255 255 / 0.14))',
+      '2xl': 'drop-shadow(0 25px 25px rgb(255 255 255 / 0.20))',
     },
   },
 
