@@ -7,8 +7,18 @@ import { spacingPositive, spacingWithNegatives, sizeValues } from './tokens/spac
 import { fontSizeValues, fontWeightValues, fontFamilyValues } from './tokens/typography';
 import { borderRadiusValues, borderWidthValues } from './tokens/borders';
 import { transitionDurationValues, transitionPropertyValues, transitionTimingFunctionValues } from './tokens/transitions';
+import {
+  gridTemplateColumnsPresets,
+  gridTemplateColumnsRepeat,
+  gridTemplateRowsRepeat,
+  gridAutoFlowValues,
+  gridAutoTrackValues,
+  gridPlacementValues,
+  gridLineStartValues,
+  gridLineEndValues,
+} from './tokens/grid';
 
-// Simple responsive conditions - only essential properties using simple values
+// Simple responsive conditions - include spacing, typography, layout, and grid essentials
 const responsiveConditions = defineProperties({
   conditions: {
     mobile: {},
@@ -30,6 +40,8 @@ const responsiveConditions = defineProperties({
     marginLeft: spacingWithNegatives,
     marginRight: spacingWithNegatives,
     gap: spacingPositive,
+    columnGap: spacingPositive,
+    rowGap: spacingPositive,
 
     // Color utilities - using semantic names (converted to CSS variables internally)
     color: colorMap,
@@ -42,6 +54,26 @@ const responsiveConditions = defineProperties({
     // Layout utilities
     width: sizeValues,
     height: sizeValues,
+
+    // Grid responsive utilities
+    gridTemplateColumns: {
+      ...gridTemplateColumnsPresets,
+      ...gridTemplateColumnsRepeat,
+    },
+    gridTemplateRows: gridTemplateRowsRepeat,
+    gridAutoFlow: [...gridAutoFlowValues],
+    gridAutoRows: gridAutoTrackValues,
+    gridAutoColumns: gridAutoTrackValues,
+    justifyItems: [...gridPlacementValues.justifyItems],
+    alignItems: [...gridPlacementValues.alignItems],
+    justifyContent: [...gridPlacementValues.justifyContent],
+    alignContent: [...gridPlacementValues.alignContent],
+    placeItems: [...gridPlacementValues.placeItems],
+    placeContent: [...gridPlacementValues.placeContent],
+    gridColumnStart: gridLineStartValues,
+    gridColumnEnd: gridLineEndValues,
+    gridRowStart: gridLineStartValues,
+    gridRowEnd: gridLineEndValues,
   },
 });
 
@@ -57,7 +89,7 @@ const staticProperties = defineProperties({
     justifyContent: ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'],
     alignItems: ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'],
     alignSelf: ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch'],
-    gridTemplateColumns: ['repeat(auto-fit, minmax(100px, 1fr))', 'repeat(auto-fit, minmax(150px, 1fr))', 'repeat(auto-fit, minmax(200px, 1fr))', 'repeat(auto-fit, minmax(250px, 1fr))', 'repeat(auto-fit, minmax(300px, 1fr))', '1fr 1fr', '1fr 1fr 1fr', '1fr 1fr 1fr 1fr'],
+  // gridTemplateColumns now lives in responsive properties above
     alignContent: ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'stretch'],
 
     // Border utilities - mapped to concrete CSS values

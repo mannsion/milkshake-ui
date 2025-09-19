@@ -94,7 +94,7 @@
 
 					<div class={sprinkles({
 						display: 'grid',
-						gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+						gridTemplateColumns: 'autoFit100',
 						gap: '3'
 					})}>
 						{#each colorShades as shade}
@@ -159,7 +159,7 @@
 
 			<div class={sprinkles({
 				display: 'grid',
-				gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+				gridTemplateColumns: 'autoFit300',
 				gap: '8'
 			})}>
 				<!-- Background Colors -->

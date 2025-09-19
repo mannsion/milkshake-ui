@@ -488,6 +488,173 @@
 		</div>
 	</section>
 
+	<!-- Grid System Section -->
+	<section class={section}>
+		<div class={container}>
+			<h2 class={sprinkles({ fontSize: '3xl', fontWeight: 'semibold', color: 'neutral-900' })} style="text-align: center;">
+				Grid System
+			</h2>
+			<p class={sprinkles({ fontSize: 'lg', color: 'neutral-700' })} style="text-align: center; margin-bottom: 3rem; max-width: 48rem; margin-left: auto; margin-right: auto;">
+				Feature-complete CSS Grid utilities: templates, auto-flow, tracks, placement, and line spans.
+			</p>
+
+			<div class={gridAutoFitMedium}>
+				<!-- Templates: Auto-fit vs Auto-fill -->
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Templates: Auto-fit</h3>
+						<div class={sprinkles({ display: 'grid', gridTemplateColumns: 'autoFit150', gap: '4' })}>
+							{#each Array(8) as _, i}
+								<div class={sprinkles({ backgroundColor: 'primary-100', borderRadius: 'md', padding: '4', color: 'primary-800', fontWeight: 'medium', textAlign: 'center' })}>
+									Item {i + 1}
+								</div>
+							{/each}
+						</div>
+					</div>
+				</div>
+
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Templates: Auto-fill</h3>
+						<div class={sprinkles({ display: 'grid', gridTemplateColumns: 'autoFill150', gap: '4' })}>
+							{#each Array(8) as _, i}
+								<div class={sprinkles({ backgroundColor: 'success-100', borderRadius: 'md', padding: '4', color: 'success-800', fontWeight: 'medium', textAlign: 'center' })}>
+									Item {i + 1}
+								</div>
+							{/each}
+						</div>
+					</div>
+				</div>
+
+				<!-- Repeat Columns -->
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Templates: Repeat Columns</h3>
+						<div class={sprinkles({ display: 'grid', gridTemplateColumns: 'cols4', gap: '3' })}>
+							{#each Array(8) as _, i}
+								<div class={sprinkles({ backgroundColor: 'warning-100', borderRadius: 'md', padding: '3', color: 'warning-900', fontWeight: 'medium', textAlign: 'center' })}>Col {i + 1}</div>
+							{/each}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Lines & Spans -->
+			<div class={gridAutoFitMedium} style="margin-top: 2rem;">
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Grid Lines & Spans</h3>
+						<div class={sprinkles({ display: 'grid', gridTemplateColumns: 'cols6', gap: '3' })}>
+							<div class={sprinkles({ backgroundColor: 'info-100', borderRadius: 'md', padding: '3', gridColumnStart: 'span2', gridColumnEnd: 'span2', textAlign: 'center', color: 'info-900', fontWeight: 'medium' })}>span 2</div>
+							<div class={sprinkles({ backgroundColor: 'info-100', borderRadius: 'md', padding: '3', gridColumnStart: 'span3', gridColumnEnd: 'span3', textAlign: 'center', color: 'info-900', fontWeight: 'medium' })}>span 3</div>
+							<div class={sprinkles({ backgroundColor: 'info-100', borderRadius: 'md', padding: '3', textAlign: 'center', color: 'info-900', fontWeight: 'medium' })}>auto</div>
+							<div class={sprinkles({ backgroundColor: 'info-100', borderRadius: 'md', padding: '3', gridColumnStart: '2', gridColumnEnd: '5', textAlign: 'center', color: 'info-900', fontWeight: 'medium' })}>2 ➝ 5</div>
+						</div>
+					</div>
+				</div>
+
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Auto Flow & Tracks</h3>
+						<div class={sprinkles({ display: 'grid', gridTemplateColumns: 'cols4', gap: '3', gridAutoFlow: 'row dense', gridAutoRows: 'minmaxFr' })}>
+							{#each [24, 40, 32, 56, 24, 32, 48, 28] as h, i}
+								<div class={sprinkles({ backgroundColor: 'neutral-100', borderRadius: 'md', padding: '3', color: 'neutral-900', fontWeight: 'medium', textAlign: 'center' })} style={`height: ${h / 4}rem; display: flex; align-items: center; justify-content: center;`}>
+									Tile {i + 1}
+								</div>
+							{/each}
+						</div>
+						<div class={sprinkles({ fontSize: 'xs', color: 'neutral-600', marginTop: '2' })}>
+							gridAutoFlow: 'row dense' • gridAutoRows: 'minmaxFr'
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Placement & Alignment -->
+			<div class={gridAutoFitMedium} style="margin-top: 2rem;">
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Place Items</h3>
+						<div class={sprinkles({ display: 'grid', gridTemplateColumns: 'cols3', gap: '3', placeItems: 'center' })} style="height: 180px;">
+							{#each Array(6) as _, i}
+								<div class={sprinkles({ backgroundColor: 'neutral-200', borderRadius: 'md', padding: '3', color: 'neutral-800', fontWeight: 'medium' })}>Item {i + 1}</div>
+							{/each}
+						</div>
+						<div class={sprinkles({ fontSize: 'xs', color: 'neutral-600', marginTop: '2' })}>placeItems: 'center'</div>
+					</div>
+				</div>
+
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Place Content</h3>
+						<div class={sprinkles({ display: 'grid', gridTemplateColumns: 'cols3', gap: '3', placeContent: 'center' })} style="height: 180px;">
+							{#each Array(6) as _, i}
+								<div class={sprinkles({ backgroundColor: 'neutral-200', borderRadius: 'md', padding: '3', color: 'neutral-800', fontWeight: 'medium' })}>Item {i + 1}</div>
+							{/each}
+						</div>
+						<div class={sprinkles({ fontSize: 'xs', color: 'neutral-600', marginTop: '2' })}>placeContent: 'center'</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Typography: Font Families -->
+	<section class={sectionAlt}>
+		<div class={container}>
+			<h2 class={sprinkles({ fontSize: '3xl', fontWeight: 'semibold', color: 'neutral-900' })} style="text-align: center;">Typography: Font Families</h2>
+			<p class={sprinkles({ fontSize: 'lg', color: 'neutral-700' })} style="text-align: center; margin-bottom: 3rem; max-width: 48rem; margin-left: auto; margin-right: auto;">
+				Choose from sans, serif, and mono families.
+			</p>
+			<div class={gridAutoFitMedium}>
+				<div class={card}><div class={cardPadding}><div class={sprinkles({ fontFamily: 'sans', fontSize: 'lg', color: 'neutral-900' })}>Sans: The quick brown fox jumps over the lazy dog.</div></div></div>
+				<div class={card}><div class={cardPadding}><div class={sprinkles({ fontFamily: 'serif', fontSize: 'lg', color: 'neutral-900' })}>Serif: The quick brown fox jumps over the lazy dog.</div></div></div>
+				<div class={card}><div class={cardPadding}><div class={sprinkles({ fontFamily: 'mono', fontSize: 'lg', color: 'neutral-900' })}>Mono: const hello = 'world';</div></div></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Transitions: Properties & Easing -->
+	<section class={section}>
+		<div class={container}>
+			<h2 class={sprinkles({ fontSize: '3xl', fontWeight: 'semibold', color: 'neutral-900' })} style="text-align: center;">Transitions: Properties & Easing</h2>
+			<p class={sprinkles({ fontSize: 'lg', color: 'neutral-700' })} style="text-align: center; margin-bottom: 3rem; max-width: 48rem; margin-left: auto; margin-right: auto;">
+				Transition properties (colors, transform, shadow) and timing functions.
+			</p>
+			<div class={gridAutoFitMedium}>
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Timing Functions</h3>
+						<div class={sprinkles({ display: 'flex', flexWrap: 'wrap' })} style="gap: 0.75rem;">
+							{#each ['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'] as tf}
+								<div
+									class="transition-timing-demo {sprinkles({ backgroundColor: 'primary-500', color: 'white', borderRadius: 'md', paddingX: '3', paddingY: '2', transitionDuration: 'fast', transitionProperty: 'transform' })}"
+									style={`transition-timing-function: ${tf};`}
+									role="button"
+									aria-label={`Timing function ${tf}`}
+								>
+									{tf}
+								</div>
+							{/each}
+						</div>
+					</div>
+				</div>
+
+				<div class={card}>
+					<div class={cardPadding}>
+						<h3 class={sprinkles({ fontSize: 'xl', fontWeight: 'semibold', color: 'neutral-900' })} style="margin-bottom: 1rem;">Transition Properties</h3>
+						<div class={sprinkles({ display: 'flex', flexWrap: 'wrap' })} style="gap: 0.75rem;">
+							<div class="transition-color-demo {sprinkles({ backgroundColor: 'primary-500', color: 'white', borderRadius: 'md', paddingX: '3', paddingY: '2', transitionDuration: 'normal', transitionProperty: 'colors' })}">colors</div>
+							<div class="transition-transform-demo {sprinkles({ backgroundColor: 'success-500', color: 'white', borderRadius: 'md', paddingX: '3', paddingY: '2', transitionDuration: 'normal', transitionProperty: 'transform' })}">transform</div>
+							<div class="transition-shadow-demo {sprinkles({ backgroundColor: 'warning-500', color: 'white', borderRadius: 'md', paddingX: '3', paddingY: '2', transitionDuration: 'normal', transitionProperty: 'shadow', boxShadow: 'sm' })}">shadow</div>
+						</div>
+						<div class={sprinkles({ fontSize: 'xs', color: 'neutral-600', marginTop: '2' })}>Hover the chips</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<!-- Footer -->
 	<div class={footer}>
 		<div class={container}>
@@ -501,5 +668,17 @@
 <style>
 	.transition-demo:hover {
 		transform: scale(1.1);
+	}
+	.transition-timing-demo:hover {
+		transform: translateY(-4px);
+	}
+	.transition-color-demo:hover {
+		background-color: var(--color-primary-600);
+	}
+	.transition-transform-demo:hover {
+		transform: rotate(-2deg) scale(1.05);
+	}
+	.transition-shadow-demo:hover {
+		box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
 	}
 </style>
