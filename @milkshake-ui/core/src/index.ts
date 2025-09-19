@@ -20,8 +20,13 @@ export { getColorValue, type ColorKey } from './color-utils';
 export { sprinkles } from './sprinkles.css';
 export type { Sprinkles } from './sprinkles.css';
 
-// Export component styles
+// Export component styles (pure components only)
 export * from './components.css';
+
+// Export layout and grid utilities
+export * from './layout.css';
+export * from './grid.css';
+export * from './sections.css';
 
 // Export font rendering optimizations
 export * from './font-rendering.css';

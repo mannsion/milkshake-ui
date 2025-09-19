@@ -1,13 +1,6 @@
-<scri	const palettes = [
-		{ name: 'Primary', key: 'primary' as const, description: 'Modern blue - professional and clean' },
-		{ name: 'Neutral', key: 'neutral' as const, description: 'Clean gray scale for modern designs' },
-		{ name: 'Success', key: 'success' as const, description: 'Fresh green colors for success states' },
-		{ name: 'Error', key: 'error' as const, description: 'Bold red colors for error states' },
-		{ name: 'Warning', key: 'warning' as const, description: 'Warm amber colors for warning states' },
-		{ name: 'Info', key: 'info' as const, description: 'Cool blue colors for info states' },
-	] as const;"ts">
-	import { sprinkles } from '@milkshake-ui/core';
-	import { colors } from '@milkshake-ui/core';
+<script lang="ts">
+    import { sprinkles } from '@milkshake-ui/core';
+    import { colors } from '@milkshake-ui/core';
 
 	const colorShades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'] as const;
 	const palettes = [

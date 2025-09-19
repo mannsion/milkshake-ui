@@ -1,125 +1,12 @@
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 import { colorMap } from './color-mappings.css';
 import { themeContract } from './theme-contract.css';
-
-// Inline token maps to avoid cross-file runtime ordering issues during VE compilation
-const borderRadiusValues = {
-  none: '0px',
-  sm: '0.125rem',
-  md: '0.25rem',
-  lg: '0.375rem',
-  xl: '0.5rem',
-  '2xl': '0.75rem',
-  '3xl': '1rem',
-  '4xl': '1.5rem',
-  full: '9999px',
-} as const;
-
-const borderWidthValues = {
-  none: '0px',
-  thin: '1px',
-  medium: '2px',
-  thick: '3px',
-  heavy: '4px',
-} as const;
-
-const fontSizeValues = {
-  xs: '0.75rem',
-  sm: '0.875rem',
-  base: '1rem',
-  lg: '1.125rem',
-  xl: '1.25rem',
-  '2xl': '1.5rem',
-  '3xl': '1.875rem',
-  '4xl': '2.25rem',
-  '5xl': '3rem',
-  '6xl': '3.75rem',
-} as const;
-
-const fontWeightValues = {
-  thin: '100',
-  light: '300',
-  normal: '400',
-  medium: '500',
-  semibold: '600',
-  bold: '700',
-  extrabold: '800',
-  black: '900',
-} as const;
-
-const fontFamilyValues = {
-  sans: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
-  serif: 'ui-serif, "Times New Roman", Times, serif',
-  mono: 'ui-monospace, "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
-} as const;
-
-const transitionDurationValues = {
-  fastest: '75ms',
-  fast: '150ms',
-  normal: '300ms',
-  slow: '500ms',
-  slowest: '700ms',
-} as const;
-
-// Breakpoint values for sprinkles (actual pixel values, not CSS variables)
-const breakpointValues = {
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
-  '2xl': '1536px',
-};
-
-// Spacing scale (matches spacing.css.ts)
-const spacingPositive = {
-  '0': '0px',
-  '1': '0.25rem',
-  '2': '0.5rem',
-  '3': '0.75rem',
-  '4': '1rem',
-  '5': '1.25rem',
-  '6': '1.5rem',
-  '8': '2rem',
-  '10': '2.5rem',
-  '12': '3rem',
-  '16': '4rem',
-  '20': '5rem',
-  '24': '6rem',
-  '32': '8rem',
-  '40': '10rem',
-  '48': '12rem',
-  '56': '14rem',
-  '64': '16rem',
-  '72': '18rem',
-  '80': '20rem',
-  '96': '24rem',
-  '112': '28rem',
-  '128': '32rem',
-} as const;
-
-const spacingWithNegatives = {
-  ...spacingPositive,
-  '-1': '-0.25rem',
-  '-2': '-0.5rem',
-  '-3': '-0.75rem',
-  '-4': '-1rem',
-  '-5': '-1.25rem',
-  '-6': '-1.5rem',
-  '-8': '-2rem',
-  '-10': '-2.5rem',
-  '-12': '-3rem',
-  '-16': '-4rem',
-  '-20': '-5rem',
-  '-24': '-6rem',
-  '-32': '-8rem',
-} as const;
-
-// Width/height using spacing scale plus keywords
-const sizeValues = {
-  ...spacingPositive,
-  full: '100%',
-  auto: 'auto',
-} as const;
+// Token maps (pure TS) imported from tokens/*
+import { breakpointValues } from './tokens/breakpoints';
+import { spacingPositive, spacingWithNegatives, sizeValues } from './tokens/spacing';
+import { fontSizeValues, fontWeightValues, fontFamilyValues } from './tokens/typography';
+import { borderRadiusValues, borderWidthValues } from './tokens/borders';
+import { transitionDurationValues, transitionPropertyValues, transitionTimingFunctionValues } from './tokens/transitions';
 
 // Simple responsive conditions - only essential properties using simple values
 const responsiveConditions = defineProperties({
@@ -196,14 +83,8 @@ const staticProperties = defineProperties({
 
     // Transition utilities
     transitionDuration: transitionDurationValues,
-    transitionProperty: {
-      all: 'all',
-      colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
-      opacity: 'opacity',
-      transform: 'transform',
-      shadow: 'box-shadow, filter',
-    },
-    transitionTimingFunction: ['linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out'],
+    transitionProperty: transitionPropertyValues,
+    transitionTimingFunction: transitionTimingFunctionValues,
 
     // Additional layout utilities
     minHeight: ['screen', 'full', 'auto'],
