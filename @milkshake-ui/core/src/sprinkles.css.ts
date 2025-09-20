@@ -1,3 +1,6 @@
+// Include global reset + font rendering optimizations as a side-effect so
+// any app importing sprinkles also gets html/body margin:0 in prod builds.
+import './font-rendering.css';
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles';
 import { colorMap } from './color-mappings.css';
 import { themeContract } from './theme-contract.css';

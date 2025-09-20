@@ -28,5 +28,7 @@ export * from './layout.css';
 export * from './grid.css';
 export * from './sections.css';
 
-// Export font rendering optimizations
-export * from './font-rendering.css';
+// Ensure global font rendering + UA margin reset CSS is included for side-effects
+// Note: This file only calls globalStyle and doesn't export symbols.
+// Using a side-effect import prevents production tree-shaking from dropping it.
+import './font-rendering.css';

@@ -36,7 +36,7 @@
 		<div class={container}>
 			<div class={sprinkles({ display: 'flex', alignItems: 'center', justifyContent: 'center' })} style="flex-direction: column; text-align: center;">
 				<h1 class={sprinkles({ fontSize: '4xl', fontWeight: 'bold', color: 'neutral-900' })}>
-					Milkshake UI
+					Milkshake UI - Test
 				</h1>
 				<p class={sprinkles({ fontSize: 'lg', color: 'neutral-700' })} style="margin-bottom: 2rem; max-width: 48rem;">
 					A pure CSS utility framework built with vanilla-extract and sprinkles.

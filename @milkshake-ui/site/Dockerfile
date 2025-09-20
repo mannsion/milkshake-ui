@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the pre-built application
 COPY build/ ./
 
+# Ensure each build produces a unique image layer so 'latest' updates on push
+RUN date > /build-time
+
 # Create a non-root user
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S sveltekit -u 1001
