@@ -11,38 +11,49 @@
 		"url": "git+https://github.com/mannsion/milkshake-ui.git"
 	},
 	"license": "ISC",
-	"author": "",
-	"type": "commonjs",
-	"main": "index.js",
+	"author": "mannsion",
+	"type": "module",
 	"workspaces": [
-		"@milkshake-ui/*"
+		"packages/*"
 	],
 	"scripts": {
-		"dev": "npm run site:dev",
-		"build": "npm run site:build",
-		"preview": "npm run site:preview",
-		"docker:build": "npm run build && docker build --no-cache -t dreg.home.lab:5000/milkshake-ui-site:latest -f @milkshake-ui/site/Dockerfile @milkshake-ui/site",
-		"docker:push": "docker push dreg.home.lab:5000/milkshake-ui-site:latest",
-		"docker:release": "npm run docker:build && npm run docker:push",
-		"docker:pull": "docker pull dreg.home.lab:5000/milkshake-ui-site:latest",
-		"docker:run": "docker run --pull always -d -p 3000:3000 --name milkshake-ui-site dreg.home.lab:5000/milkshake-ui-site:latest",
-		"docker:stop": "docker stop milkshake-ui-site && docker rm milkshake-ui-site",
+		"pack:core": "vite-node build_/publish-core.ts pack",
+		"publish:core": "vite-node build_/publish-core.ts publish",
+		"publish:core:dev": "cross-env REGISTRY=https://npm.recktek.com TAG=dev vite-node build_/publish-core.ts publish",
+		"publish:core:dev:force": "cross-env REGISTRY=https://npm.recktek.com TAG=dev FORCE=1 vite-node build_/publish-core.ts publish",
+		"publish:core:dry-run": "cross-env DRY_RUN=1 vite-node build_/publish-core.ts publish",
+		"pack:plugin": "vite-node build_/publish-plugin.ts pack",
+		"publish:plugin": "vite-node build_/publish-plugin.ts publish",
+		"publish:plugin:dev": "cross-env REGISTRY=https://npm.recktek.com TAG=dev vite-node build_/publish-plugin.ts publish",
+		"publish:plugin:dev:force": "cross-env REGISTRY=https://npm.recktek.com TAG=dev FORCE=1 vite-node build_/publish-plugin.ts publish",
+		"publish:plugin:dry-run": "cross-env DRY_RUN=1 vite-node build_/publish-plugin.ts publish",
 		"site:dev": "npm run dev --workspace=@milkshake-ui/site",
 		"site:build": "npm run build --workspace=@milkshake-ui/site",
 		"site:preview": "npm run preview --workspace=@milkshake-ui/site",
+		"presite:docker:build": "npm run site:build",
+		"site:docker:build": "cross-env DOCKER_BUILDKIT=1 docker build --no-cache -t milkshake-ui-site:latest -f @milkshake-ui/site/Dockerfile @milkshake-ui/site",
+		"site:docker:push": "docker push milkshake-ui-site:latest",
+		"site:docker:release": "npm run site:docker:build && npm run site:docker:push",
+		"site:docker:pull": "docker pull milkshake-ui-site:latest",
 		"site:check": "npm run check --workspace=@milkshake-ui/site",
 		"site:lint": "npm run lint --workspace=@milkshake-ui/site",
 		"core:build": "npm run build --workspace=@milkshake-ui/core",
 		"plugin:build": "npm run build --workspace=@milkshake-ui/vite-plugin"
 	},
 	"devDependencies": {
+		"@types/node": "^24.5.2",
 		"@vanilla-extract/sprinkles": "^1.6.5",
 		"eslint": "^9.34.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.11.0",
 		"tslib": "^2.8.1",
 		"typescript": "^5.9.2",
-		"vite": "^7.1.3",
-		"vite-node": "^3.2.4"
+		"vite": "^7.1.6",
+		"vite-node": "^3.2.4",
+		"vite-plugin-dts": "^4.5.4",
+		"yargs": "^18.0.0"
+	},
+	"dependencies": {
+		"cross-env": "^10.0.0"
 	}
 }
