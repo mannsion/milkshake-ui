@@ -37,7 +37,6 @@
 - ✅ Create `.css.ts` files with vanilla-extract functions
 - ✅ Write TypeScript source code
 - ✅ Export design tokens and utilities
-- ✅ Document usage patterns
 - ❌ Never run compilation commands
 - ❌ Never generate build artifacts
 - ❌ Never create distribution packages
@@ -450,14 +449,6 @@ Milkshake UI is a TypeScript-as-source UI framework built with vanilla-extract a
 - Progressive loading
 - Placeholder content
 - Loading transitions
-
-### Migration & Upgrade Path
-**Version Compatibility:**
-- Semantic versioning
-- Deprecation warnings
-- Migration guides
-- Breaking change documentation
-- Upgrade utilities
 
 **Backward Compatibility:**
 - Legacy API support
