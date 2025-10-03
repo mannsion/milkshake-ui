@@ -1,5 +1,5 @@
 {
-  "name": "site2",
+  "name": "@milkshake-ui/site2",
   "private": true,
   "type": "module",
   "scripts": {

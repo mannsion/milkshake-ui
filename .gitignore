@@ -158,5 +158,3 @@ build/
 /node_modules/
 
 # React Router
-/.react-router/
-/build/
