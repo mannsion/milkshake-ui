@@ -37,22 +37,34 @@ export {
 	type MixBlendModeKey,
 	type BackgroundBlendModeKey,
 } from './tokens/filters';
+export {
+	gridTemplateColumnsPresets,
+	gridTemplateColumnsRepeat,
+	gridTemplateRowsRepeat,
+	gridAutoFlowValues,
+	gridAutoTrackValues,
+	gridPlacementValues,
+	gridLineStartValues,
+	gridLineEndValues,
+	gridColumnSpanValues,
+	gridRowSpanValues,
+	type GridTemplateColumnsPresetKey,
+	type GridTemplateColumnsRepeatKey,
+	type GridTemplateColumnsKey,
+	type GridTemplateRowsRepeatKey,
+	type GridAutoFlowValue,
+	type GridAutoTrackKey,
+	type GridPlacementCategory,
+	type GridPlacementValue,
+	type GridLineKey,
+	type GridColumnSpanKey,
+	type GridRowSpanKey,
+	type GridSpanKey,
+} from './tokens/grid';
 
 // Export theme system
 export { themeContract } from './theme-contract.css';
 export type { ThemeContract } from './theme-contract.css';
-export {
-	lightTheme,
-	darkTheme,
-	darkMilkTheme,
-	highContrastLightTheme,
-	highContrastDarkTheme,
-	highContrastDarkMilkTheme,
-	zigrokTheme,
-	strawberryMilkshakeTheme,
-	themes,
-	type ThemeName,
-} from './themes';
 
 // Export color mappings for sprinkles
 export { colorMappings, colorMap, commonColors } from './color-mappings.css';
@@ -76,9 +88,7 @@ export {
 	type TranslateAxisKey,
 	type TransformOriginKey,
 } from './tokens/transforms';
-export {
-	skipLink,
-} from './accessibility.css';
+export { skipLink, visuallyHidden } from './accessibility.css';
 export {
 	getDocumentDirection,
 	setDocumentDirection,
@@ -90,6 +100,13 @@ export {
 // Export sprinkles utility
 export { sprinkles } from './sprinkles.css';
 export type { Sprinkles } from './sprinkles.css';
+export {
+	partitionSprinkleProps,
+	isSprinklesProp,
+	sprinklesPropertySet,
+	getSprinklesClassName,
+	type SprinklesProps,
+} from './bindings/sprinkles';
 
 // Export component styles (pure components only)
 export * from './components.css';

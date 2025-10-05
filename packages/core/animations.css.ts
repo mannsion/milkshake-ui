@@ -1,44 +1,14 @@
-import { createGlobalTheme } from '@vanilla-extract/css';
+import { themeContract } from './theme-contract.css';
 
-export const animations = createGlobalTheme(':root', {
-  // Duration
-  duration: {
-    fastest: '75ms',
-    fast: '100ms',
-    normal: '200ms',
-    slow: '300ms',
-    slowest: '500ms',
-  },
-
-  // Easing functions
-  easing: {
-    linear: 'linear',
-    in: 'ease-in',
-    out: 'ease-out',
-    inOut: 'ease-in-out',
-    bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-    elastic: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-  },
-
-  // Transition properties
-  transition: {
-    all: 'all',
-    colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
-    opacity: 'opacity',
-    transform: 'transform',
-    shadow: 'box-shadow, filter',
-    position: 'left, right, top, bottom',
-    size: 'width, height',
-  },
-
-  // Keyframe animations
+export const animations = {
+  ...themeContract.animations,
   keyframes: {
     spin: 'spin 1s linear infinite',
     ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
     pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
     bounce: 'bounce 1s infinite',
   },
-});
+} as const;
 
 // CSS keyframes definitions
 export const keyframes = `

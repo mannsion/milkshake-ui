@@ -1,4 +1,3 @@
-import { createThemeContract } from '@vanilla-extract/css';
 import { spacingWithNegative } from './tokens/spacing-scale';
 
 const createNullEntries = <T extends Record<string, unknown>>(tokens: T) =>
@@ -7,6 +6,46 @@ const createNullEntries = <T extends Record<string, unknown>>(tokens: T) =>
 	};
 
 const spacingContract = createNullEntries(spacingWithNegative);
+
+const formatSegment = (segment: string | number) => {
+	const stringified = String(segment);
+	const isNegative = stringified.startsWith('-');
+	const cleaned = stringified
+		.replace(/^-/, '')
+		.replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+		.replace(/[^a-zA-Z0-9]+/g, '-')
+		.replace(/-{2,}/g, '-')
+		.replace(/^-+|-+$/g, '')
+		.toLowerCase() || 'default';
+	return isNegative ? `neg-${cleaned}` : cleaned;
+};
+
+const createVarName = (path: Array<string | number>) =>
+	`--milkshake-${path.map(formatSegment).join('-')}`;
+
+const buildVarNameMap = (tokens: unknown, path: Array<string | number> = []): any => {
+	if (tokens && typeof tokens === 'object') {
+		return Object.fromEntries(
+			Object.entries(tokens as Record<string, unknown>).map(([key, value]) => [
+				key,
+				buildVarNameMap(value, [...path, key]),
+			]),
+		);
+	}
+	return createVarName(path);
+};
+
+const toVarReferences = (varNames: unknown): any => {
+	if (varNames && typeof varNames === 'object') {
+		return Object.fromEntries(
+			Object.entries(varNames as Record<string, unknown>).map(([key, value]) => [
+				key,
+				toVarReferences(value),
+			]),
+		);
+	}
+	return `var(${varNames as string})`;
+};
 
 // Theme contract defines the structure of all design tokens.
 // This ensures type safety and consistency across themes.
@@ -410,7 +449,42 @@ const themeContractDefinition = {
 	},
 } as const;
 
-export const themeContract = createThemeContract(themeContractDefinition) as any;
+type ThemeContractDefinition = typeof themeContractDefinition;
 
-export type ThemeContract = typeof themeContract;
+type VarReference = `var(--${string})`;
+
+type ThemeVarNameShape<T> = {
+	[K in keyof T]: T[K] extends null ? `--milkshake-${string}` : ThemeVarNameShape<T[K]>;
+};
+
+type ThemeVarReferenceShape<T> = {
+	[K in keyof T]: T[K] extends null ? VarReference : ThemeVarReferenceShape<T[K]>;
+};
+
+type StripIndexSignatures<T> = T extends object
+	? {
+			[K in keyof T as K extends string
+				? string extends K
+					? never
+					: K
+				: K extends number
+					? number extends K
+						? never
+						: K
+					: K extends symbol
+						? symbol extends K
+							? never
+							: K
+						: K]: StripIndexSignatures<T[K]>;
+		}
+	: T;
+
+type ThemeVarNames = StripIndexSignatures<ThemeVarNameShape<ThemeContractDefinition>>;
+type ThemeVarReferences = StripIndexSignatures<ThemeVarReferenceShape<ThemeContractDefinition>>;
+
+export const themeVarNames = buildVarNameMap(themeContractDefinition) as ThemeVarNames;
+
+export const themeContract = toVarReferences(themeVarNames) as ThemeVarReferences;
+
+export type ThemeContract = ThemeVarReferences;
 export type ThemeVariable = ThemeContract['colors']['primary'][500];

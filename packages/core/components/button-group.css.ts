@@ -36,6 +36,15 @@ export const buttonGroupVertical = style([
   },
 ]);
 
+export const buttonGroupLayouts = ['horizontal', 'justified', 'vertical'] as const;
+export type ButtonGroupLayout = (typeof buttonGroupLayouts)[number];
+
+export const buttonGroupClassMap: Record<ButtonGroupLayout, string> = {
+  horizontal: buttonGroup,
+  justified: buttonGroupJustified,
+  vertical: buttonGroupVertical,
+};
+
 const borderOverlapCompensation = `calc(0px - ${themeContract.borders.width.thin})`;
 const separatorColor = themeContract.semantic.border.light;
 const separatorTransition = `${themeContract.animations.duration.fast} ${themeContract.animations.easing.out}`;

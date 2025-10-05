@@ -1,4 +1,3 @@
-import { createGlobalTheme } from '@vanilla-extract/css';
-import { spacingWithNegative } from './tokens/spacing-scale';
+import { themeContract } from './theme-contract.css';
 
-export const spacing = createGlobalTheme(':root', spacingWithNegative);
+export const spacing = themeContract.spacing;

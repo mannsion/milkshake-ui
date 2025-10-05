@@ -12,6 +12,11 @@
 			"source": "./grid/index.ts",
 			"default": "./grid/index.ts",
 			"types": "./grid/index.ts"
+		},
+		"./themes/default-themes": {
+			"source": "./themes/default-themes.ts",
+			"default": "./themes/default-themes.ts",
+			"types": "./themes/default-themes.ts"
 		}
 	},
 	"files": [

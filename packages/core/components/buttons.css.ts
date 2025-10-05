@@ -1,9 +1,10 @@
 import { style, styleVariants, type ComplexStyleRule } from '@vanilla-extract/css';
+import { animations } from '../animations.css';
 import { themeContract } from '../theme-contract.css';
 
-const toneNames = ['primary', 'accent', 'neutral', 'info', 'success', 'warning', 'danger'] as const;
+export const buttonTones = ['primary', 'accent', 'neutral', 'info', 'success', 'warning', 'danger'] as const;
 
-type ButtonTone = (typeof toneNames)[number];
+type ButtonTone = (typeof buttonTones)[number];
 
 export const button = style({
   display: 'inline-flex',
@@ -394,7 +395,7 @@ const toneConfig: Record<ButtonTone, ToneConfig> = {
   },
 };
 
-const toneKeys: ButtonTone[] = [...toneNames];
+const toneKeys: ButtonTone[] = [...buttonTones];
 
 const mixColor = (base: string, mixWith: string, weight: number) =>
   `color-mix(in srgb, ${base} ${100 - weight}%, ${mixWith} ${weight}%)`;
@@ -441,9 +442,9 @@ const disabledSolidSurface = (color: string) => ({
   ].join(', '),
 });
 
-type ButtonVariantMap = Record<ButtonTone, ComplexStyleRule>;
+type ButtonToneVariantMap = Record<ButtonTone, ComplexStyleRule>;
 
-const solidVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
+const solidVariants = toneKeys.reduce<Record<ButtonTone, ComplexStyleRule>>((acc, tone) => {
   const config = toneConfig[tone].solid;
   const restSurface = solidSurfaceState(config.bg, 'rest');
   const hoverSurface = solidSurfaceState(config.hoverBg, 'hover');
@@ -461,18 +462,18 @@ const solidVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
     backgroundSize: '100% 100%',
     color: config.text,
     borderColor: restBorder,
-    boxShadow: restSurface.boxShadow,
+  boxShadow: config.shadow ?? restSurface.boxShadow,
     selectors: {
       '&:not(:disabled):hover': {
         backgroundColor: config.hoverBg,
         backgroundImage: hoverSurface.backgroundImage,
-        boxShadow: hoverSurface.boxShadow,
+  boxShadow: config.hoverShadow ?? hoverSurface.boxShadow,
         borderColor: hoverBorder,
       },
       '&:not(:disabled):active': {
         backgroundColor: config.activeBg,
         backgroundImage: activeSurface.backgroundImage,
-        boxShadow: activeSurface.boxShadow,
+  boxShadow: config.activeShadow ?? activeSurface.boxShadow,
         borderColor: activeBorder,
       },
       '&:focus-visible': {
@@ -488,15 +489,15 @@ const solidVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
         backgroundColor: config.disabledBg ?? disabledBg,
         color: config.disabledText ?? disabledText,
         backgroundImage: disabledSurface.backgroundImage,
-        boxShadow: disabledSurface.boxShadow,
+  boxShadow: disabledSurface.boxShadow,
         borderColor: disabledBorder,
       },
     },
   };
   return acc;
-}, {} as ButtonVariantMap);
+}, {} as Record<ButtonTone, ComplexStyleRule>);
 
-const softVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
+const softVariants: ButtonToneVariantMap = toneKeys.reduce((acc, tone) => {
   const config = toneConfig[tone].soft;
   acc[tone] = {
     backgroundColor: config.bg,
@@ -522,9 +523,9 @@ const softVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
     },
   };
   return acc;
-}, {} as ButtonVariantMap);
+}, {} as Record<ButtonTone, ComplexStyleRule>);
 
-const outlineVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
+const outlineVariants: ButtonToneVariantMap = toneKeys.reduce((acc, tone) => {
   const config = toneConfig[tone].outline;
   acc[tone] = {
     backgroundColor: 'transparent',
@@ -551,9 +552,9 @@ const outlineVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
     },
   };
   return acc;
-}, {} as ButtonVariantMap);
+}, {} as Record<ButtonTone, ComplexStyleRule>);
 
-const ghostVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
+const ghostVariants: ButtonToneVariantMap = toneKeys.reduce((acc, tone) => {
   const config = toneConfig[tone].ghost;
   acc[tone] = {
     backgroundColor: 'transparent',
@@ -577,9 +578,9 @@ const ghostVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
     },
   };
   return acc;
-}, {} as ButtonVariantMap);
+}, {} as Record<ButtonTone, ComplexStyleRule>);
 
-const linkVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
+const linkVariants: ButtonToneVariantMap = toneKeys.reduce((acc, tone) => {
   const config = toneConfig[tone].link;
   acc[tone] = {
     backgroundColor: 'transparent',
@@ -612,12 +613,76 @@ const linkVariants: ButtonVariantMap = toneKeys.reduce((acc, tone) => {
     },
   };
   return acc;
-}, {} as ButtonVariantMap);
+}, {} as Record<ButtonTone, ComplexStyleRule>);
+
+export const buttonVariants = ['solid', 'soft', 'outline', 'ghost', 'link'] as const;
+
+export const buttonContent = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 'inherit',
+  width: '100%',
+  transition: `opacity ${themeContract.animations.duration.fast} ${themeContract.animations.easing.out}`,
+  selectors: {
+    [`${button}[data-loading="true"] &`]: {
+      opacity: 0,
+    },
+  },
+});
+
+export const buttonIconSlot = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+  flexShrink: 0,
+  fontSize: 'inherit',
+  lineHeight: 0,
+});
+
+export const buttonLoadingIndicator = style({
+  position: 'absolute',
+  inset: 0,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+  opacity: 0,
+  transition: `opacity ${themeContract.animations.duration.fast} ${themeContract.animations.easing.out}`,
+  selectors: {
+    [`${button}[data-loading="true"] &`]: {
+      opacity: 1,
+    },
+  },
+});
+
+export const buttonSpinner = style({
+  width: themeContract.spacing['4'],
+  height: themeContract.spacing['4'],
+  borderRadius: themeContract.borders.radius.full,
+  borderWidth: themeContract.borders.width.medium,
+  borderStyle: themeContract.borders.style.solid,
+  borderColor: 'currentColor',
+  borderInlineStartColor: 'transparent',
+  animation: animations.keyframes.spin,
+});
 
 export const buttonSolid = styleVariants(solidVariants);
 export const buttonSoft = styleVariants(softVariants);
 export const buttonOutline = styleVariants(outlineVariants);
 export const buttonGhost = styleVariants(ghostVariants);
 export const buttonLink = styleVariants(linkVariants);
+
+export type ButtonSizeKey = keyof typeof buttonSize;
+export type ButtonToneKey = ButtonTone;
+export type ButtonVariantKey = 'solid' | 'soft' | 'outline' | 'ghost' | 'link';
+export type ButtonVariantMap = {
+  solid: typeof buttonSolid;
+  soft: typeof buttonSoft;
+  outline: typeof buttonOutline;
+  ghost: typeof buttonGhost;
+  link: typeof buttonLink;
+};
 
 

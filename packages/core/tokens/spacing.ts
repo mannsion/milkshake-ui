@@ -1,17 +1,27 @@
-import { spacingScale, spacingWithNegative } from './spacing-scale';
-import type {
-  SpacingPositiveKey,
-  SpacingNegativeKey,
-  SpacingScaleKey,
+import { themeContract } from '../theme-contract.css';
+import {
+  spacingScale,
+  spacingWithNegative,
+  type SpacingPositiveKey,
+  type SpacingNegativeKey,
+  type SpacingScaleKey,
 } from './spacing-scale';
 
-// Spacing scale used across sprinkles and layout utilities
-export const spacingPositive = spacingScale;
+const toSpacingRecord = <Key extends keyof typeof themeContract.spacing>(keys: readonly Key[]) =>
+  keys.reduce<Record<Key, string>>((accumulator, key) => {
+    accumulator[key] = themeContract.spacing[key];
+    return accumulator;
+  }, {} as Record<Key, string>);
 
-export const spacingWithNegatives = spacingWithNegative;
+const spacingPositiveKeys = Object.keys(spacingScale) as SpacingPositiveKey[];
+const spacingAllKeys = Object.keys(spacingWithNegative) as SpacingScaleKey[];
+
+export const spacingPositive = toSpacingRecord(spacingPositiveKeys);
+
+export const spacingWithNegatives = toSpacingRecord(spacingAllKeys);
 
 export const sizeValues = {
-  ...spacingScale,
+  ...spacingPositive,
   full: '100%',
   auto: 'auto',
   min: 'min-content',

@@ -8,19 +8,18 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+import { Box } from "../components/box";
+import {
+  getMilkshakeLightTheme,
+  milkshakeBaseThemeHref,
+} from "@milkshake-ui/core/themes/default-themes";
+
+const LIGHT_THEME = getMilkshakeLightTheme("light");
 
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
+  { rel: "stylesheet", href: milkshakeBaseThemeHref },
+  { rel: "stylesheet", href: LIGHT_THEME.href },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -32,7 +31,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body data-theme={LIGHT_THEME.name} data-theme-tone={LIGHT_THEME.tone}>
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -42,7 +41,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <Box
+      as="main"
+      width="full"
+      paddingX={{ mobile: "4", md: "6", lg: "8" }}
+      paddingY={{ mobile: "6", md: "8" }}
+      minHeight="screen"
+    >
+      <Outlet />
+    </Box>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

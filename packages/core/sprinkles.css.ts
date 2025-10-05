@@ -71,7 +71,9 @@ import {
 	gridAutoTrackValues,
 	gridPlacementValues,
 	gridLineStartValues,
-	gridLineEndValues
+	gridLineEndValues,
+	gridColumnSpanValues,
+	gridRowSpanValues
 } from './tokens/grid';
 
 const boxShadowValues = {
@@ -212,8 +214,10 @@ const responsiveConditions = defineProperties({
 		placeSelf: ['auto', 'start', 'end', 'center', 'stretch'],
 		justifySelf: ['auto', 'start', 'end', 'center', 'stretch'],
 		alignSelf: ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch'],
+		gridColumn: gridColumnSpanValues,
 		gridColumnStart: gridLineStartValues,
 		gridColumnEnd: gridLineEndValues,
+		gridRow: gridRowSpanValues,
 		gridRowStart: gridLineStartValues,
 		gridRowEnd: gridLineEndValues,
 

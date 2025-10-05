@@ -80,3 +80,39 @@ export const gridLineStartValues = Object.fromEntries([
 ]) as Record<string, string>;
 
 export const gridLineEndValues = gridLineStartValues;
+
+// Grid span utilities (`gridColumn` / `gridRow` shorthand strings)
+const spanSteps = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
+type SpanStep = (typeof spanSteps)[number];
+type SpanToken<Prefix extends string> = `${Prefix}${SpanStep}`;
+type SpanValue<Prefix extends string> = `span ${SpanStep} / span ${SpanStep}`;
+
+const createSpanRecord = <Prefix extends string>(prefix: Prefix) =>
+  Object.fromEntries(
+    spanSteps.map((span) => {
+      const token = `${prefix}${span}` as SpanToken<Prefix>;
+      const value = `span ${span} / span ${span}` as SpanValue<Prefix>;
+      return [token, value];
+    }),
+  ) as Record<SpanToken<Prefix>, SpanValue<Prefix>>;
+
+export const gridColumnSpanValues = createSpanRecord('span');
+export const gridRowSpanValues = createSpanRecord('span');
+
+// Type helpers for downstream bindings
+export type GridTemplateColumnsPresetKey = keyof typeof gridTemplateColumnsPresets;
+export type GridTemplateColumnsRepeatKey = keyof typeof gridTemplateColumnsRepeat;
+export type GridTemplateColumnsKey = GridTemplateColumnsPresetKey | GridTemplateColumnsRepeatKey;
+
+export type GridTemplateRowsRepeatKey = keyof typeof gridTemplateRowsRepeat;
+
+export type GridAutoFlowValue = (typeof gridAutoFlowValues)[number];
+export type GridAutoTrackKey = keyof typeof gridAutoTrackValues;
+
+export type GridPlacementCategory = keyof typeof gridPlacementValues;
+export type GridPlacementValue<Category extends GridPlacementCategory> = (typeof gridPlacementValues)[Category][number];
+
+export type GridLineKey = keyof typeof gridLineStartValues;
+export type GridColumnSpanKey = keyof typeof gridColumnSpanValues;
+export type GridRowSpanKey = keyof typeof gridRowSpanValues;
+export type GridSpanKey = GridColumnSpanKey | GridRowSpanKey;

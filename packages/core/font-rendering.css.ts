@@ -39,6 +39,8 @@ globalStyle('body', {
   MozOsxFontSmoothing: themeContract.typography.rendering.mozOsxFontSmoothing,
   textRendering: themeContract.typography.rendering.textRendering,
   fontFamily: themeContract.typography.fontFamily.sans,
+  backgroundColor: themeContract.semantic.background.primary,
+  color: themeContract.semantic.text.primary,
   margin: 0,
   padding: 0,
 });
